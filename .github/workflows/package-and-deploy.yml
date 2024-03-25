@@ -25,17 +25,11 @@ jobs:
       id: getversion
       run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
 
-    - name: Version output
-      run: echo ${{ steps.vars.outputs.version }}
-
     - name: Restore dependencies
       run: dotnet restore
       
     - name: Build dotnet 
       run: dotnet build --configuration release /p:Version=${{ steps.getversion.outputs.version }} /p:AssemblyVersion=${{ steps.getversion.outputs.version }} /p:InformationalVersion=${{ steps.gitversion.outputs.InformationalVersion }} --no-restore
-      
-    - name: Package nuget
-      run: dotnet pack ./CSharpModelsToTypeScript/CSharpModelsToTypeScript.csproj --configuration release -o:package /p:PackageVersion=${{ steps.getversion.outputs.version }}
 
     - name: Push generated package to Github Packages
       run: dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/colinnuk/index.json --skip-duplicate
