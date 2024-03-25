@@ -1,4 +1,4 @@
-﻿namespace CSharpModelsToJson;
+﻿namespace CSharpModelsToTypeScript;
 
 public class Options
 {

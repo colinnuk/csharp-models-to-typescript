@@ -1,5 +1,5 @@
 ﻿
-namespace CSharpModelsToJson;
+namespace CSharpModelsToTypeScript;
 public static class MemberModelExtensions
 {
     public static string GetTypeScriptType(this Member typeMemberModel)

@@ -12,10 +12,12 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="TestOptions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  <PropertyGroup>
+    <PackAsTool>true</PackAsTool>
+    <PackageId>CSharpModelsToTypeScript</PackageId>
+    <ToolCommandName>csharptotypescript</ToolCommandName>
+    <PackageOutputPath>./package</PackageOutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
 </Project>

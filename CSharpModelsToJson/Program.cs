@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Configuration;
 
-namespace CSharpModelsToJson;
+namespace CSharpModelsToTypeScript;
 public class Program
 {
     public static void Main(string[] args)

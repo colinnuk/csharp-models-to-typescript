@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace CSharpModelsToJson;
+namespace CSharpModelsToTypeScript;
 public class CSharpToTypeScriptGenerator(Options options)
 {
     public Options Options { get; } = options;

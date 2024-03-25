@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpModelsToJson;
+namespace CSharpModelsToTypeScript;
 
 class EnumCollector : CSharpSyntaxWalker
 {

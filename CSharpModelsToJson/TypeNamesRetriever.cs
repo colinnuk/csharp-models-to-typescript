@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpModelsToJson;
+namespace CSharpModelsToTypeScript;
 public static class TypeNamesRetriever
 {
     public static List<string> GetImportedTypeNames(List<Member> members)

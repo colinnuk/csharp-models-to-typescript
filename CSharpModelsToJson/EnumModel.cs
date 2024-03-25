@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CSharpModelsToJson;
+namespace CSharpModelsToTypeScript;
 
 public class EnumModel
 {

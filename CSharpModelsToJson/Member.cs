@@ -1,4 +1,4 @@
-﻿namespace CSharpModelsToJson;
+﻿namespace CSharpModelsToTypeScript;
 public class Member
 {
     public string Identifier { get; set; }
