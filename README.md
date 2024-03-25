@@ -21,7 +21,9 @@ Create an options JSON file with the below format
   "UseSingleQuote": true
 }
 ```
-Only InputFolder & OutputFodler are required
+Only InputFolder & OutputFolder are required.
+
+
 
 
 ## License

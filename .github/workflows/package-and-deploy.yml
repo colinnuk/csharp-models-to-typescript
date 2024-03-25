@@ -1,0 +1,52 @@
+name: Package, Deploy and create new release
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '**/*.cs'
+      - '**/*.csproj'
+
+
+jobs:
+  build:
+    #if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.15
+      with:
+          versionSpec: '5.x'
+
+    - name: Check out Code 
+      uses: actions/checkout@v3
+      with:
+          fetch-depth: 0
+          ref: master
+
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.15
+      with:
+          useConfigFile: true
+          configFilePath: ./.github/gitversion.yml
+
+    - name: Create Release for Tag
+      uses: yyx990803/release-tag@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.gitversion.outputs.FullSemVer }}
+
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build dotnet 
+      run: dotnet build --configuration release /p:Version=${{ steps.gitversion.outputs.AssemblySemVer }} /p:AssemblyVersion=${{ steps.gitversion.outputs.AssemblySemVer }} /p:InformationalVersion=${{ steps.gitversion.outputs.InformationalVersion }} --no-restore
+      
+    - name: Package nuget
+      run: dotnet pack ./CSharpModelsToJson/CSharpModelsToJson.csproj --configuration release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
+
+    - name: Push generated package to Github Packages
+      run: dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/colinnuk/index.json --skip-duplicate

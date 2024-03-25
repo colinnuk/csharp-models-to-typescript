@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "csharp-models-to-json": {
-      "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\colin\\source\\MountainConditions\\MountainConditions.WeatherForecastAPI.Contracts"
-    }
-  }
-}
