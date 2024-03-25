@@ -5,7 +5,7 @@ public static class MemberModelExtensions
     public static string GetTypeScriptType(this Member typeMemberModel)
     {
         var baseType = ExtractBaseTypeName(typeMemberModel.Type);
-        var isBaseTypeNullable = IsNullable(typeMemberModel.Type);
+        var isBaseTypeNullable = IsNullable(baseType);
         var isArray = IsArray(typeMemberModel.Type);
 
         baseType = isBaseTypeNullable ? baseType[..^1] : baseType;
@@ -41,7 +41,7 @@ public static class MemberModelExtensions
         _ => type
     };
 
-    private static string ExtractBaseTypeName(string type) => type.Replace("[]", "").Replace("??", "?");
+    private static string ExtractBaseTypeName(string type) => type.Replace("[]?", "").Replace("[]", "").Replace("??", "?");
 
     public static string GetLowerCamelCaseName(this Member typeMemberModel) => 
         char.ToLowerInvariant(typeMemberModel.Identifier[0]) + typeMemberModel.Identifier[1..];
