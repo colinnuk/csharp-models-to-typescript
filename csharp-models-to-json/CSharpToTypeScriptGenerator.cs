@@ -29,7 +29,6 @@ public class CSharpToTypeScriptGenerator(Options options)
             sb.WriteLine($"{GetIndentString()}{member.GetLowerCamelCaseName()}: {member.GetTypeScriptType()}{GetStatementEnd()}");
         }
         sb.WriteLine("}");
-        sb.WriteLine();
 
         var filePath = Path.Combine(Options.OutputFolder, $"{model.ModelName}.ts");
         var text = sb.ToString();
@@ -48,7 +47,6 @@ public class CSharpToTypeScriptGenerator(Options options)
             sb.WriteLine($"{GetIndentString()}{value.Key} = {GetQuote()}{value.Value}{GetQuote()}{GetLastCharacter(value.Key, enumModel.Values)}");
         }
         sb.WriteLine("}");
-        sb.WriteLine();
 
         var filePath = Path.Combine(Options.OutputFolder, $"{enumModel.Identifier}.ts");
         var text = sb.ToString();
