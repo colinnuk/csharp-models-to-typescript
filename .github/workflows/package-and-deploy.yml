@@ -6,6 +6,7 @@ on:
     paths:
       - '**/*.cs'
       - '**/*.csproj'
+  workflow_dispatch:
 
 
 jobs:
