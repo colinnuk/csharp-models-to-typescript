@@ -2,14 +2,17 @@
 
 This is a tool that creates TypeScript files from your C# domain models, records, enums and types. There's other tools that does this but what makes this one different is that it internally uses [Roslyn (the .NET compiler platform)](https://github.com/dotnet/roslyn) to parse the source files, which removes the need to create and maintain our own parser.
 
+NOte: Currently I havent pushed this to nuget, so you will have to fork the repo and build it yourself.
 
 ## Install
 
+``dotnet tool install -g csharp-models-to-typescript``
 
+(Or install it locally if you prefer)
 
 ## How to use
 
-Create an options JSON file with the below format
+Create an options JSON file with the below format & drop it in the folder where you want to run the tool.
 
 ```
 {
@@ -21,10 +24,11 @@ Create an options JSON file with the below format
   "UseSingleQuote": true
 }
 ```
-Only InputFolder & OutputFolder are required.
+Only InputFolder & OutputFolder are required, the others are optional. Default values are as above.
 
+Then run the tool with the below command
 
-
+``csharpmodelstotypescript options.json``
 
 ## License
 Adapted from the below github profile

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <None Remove="package\**" />
+	<None Include="..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
     <ToolCommandName>csharptotypescript</ToolCommandName>
     <PackageOutputPath>./package</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
 </Project>
