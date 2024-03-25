@@ -13,11 +13,11 @@ jobs:
   build:
     #if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    
+
     - name: Read VERSION file
       id: getversion
       run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
-      
+
     - name: Version output
       run: echo ${{ steps.vars.outputs.version }}
 
