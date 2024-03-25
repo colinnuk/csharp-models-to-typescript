@@ -4,22 +4,38 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace CSharpModelsToJson;
 public class Program
 {
     public static void Main(string[] args)
     {
+        IConfiguration config = new ConfigurationBuilder()
+            .AddJsonFile(args[0], false, false)
+            .Build();
+        Options options = config.Get<Options>();
+
         List<FileToConvert> files = [];
 
-        foreach (string fileName in GetFileNames(args[0]))
+        foreach (string fileName in GetFileNames(options.InputFolder))
         {
             files.Add(ParseFile(fileName));
         }
 
-        string json = JsonConvert.SerializeObject(files);
-        System.Console.WriteLine(json);
+        var generator = new CSharpToTypeScriptGenerator(options);
+        foreach (var file in files)
+        {
+            foreach (var model in file.Models)
+            {
+                generator.GenerateTypeScriptForModel(model);
+            }
+
+            foreach (var enumModel in file.Enums)
+            {
+                generator.GenerateTypeScriptForEnum(enumModel);
+            }
+        }
     }
 
     private static List<string> GetFileNames(string directoryName)

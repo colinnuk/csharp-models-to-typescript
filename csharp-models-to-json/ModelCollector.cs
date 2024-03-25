@@ -26,7 +26,7 @@ public class ModelCollector : CSharpSyntaxWalker
 
     public override void VisitRecordDeclaration(RecordDeclarationSyntax node)
     {
-        var members = node.ParameterList.Parameters
+        var fields = node.ParameterList.Parameters
             .Where(field => IsAccessible(field.Modifiers))
             .Where(property => !IsIgnored(property.AttributeLists))
             .Select(ConvertParam);
@@ -36,12 +36,14 @@ public class ModelCollector : CSharpSyntaxWalker
             .Where(property => !IsIgnored(property.AttributeLists))
             .Select(ConvertProperty);
 
+        var members = fields.Concat(properties).ToList();
         
         var model = new Model()
         {
             ModelName = $"{node.Identifier}{node.TypeParameterList?.ToString()}",
-            Members = members.Concat(properties),
+            Members = members,
             BaseClasses = node.BaseList?.Types.Select(s => s.ToString()),
+            ImportedTypeNames = TypeNamesRetriever.GetImportedTypeNames(members),
         };
 
         Models.Add(model);
@@ -49,7 +51,7 @@ public class ModelCollector : CSharpSyntaxWalker
 
     private static Model CreateModel(TypeDeclarationSyntax node)
     {
-        var members = node.Members.OfType<FieldDeclarationSyntax>()
+        var fields = node.Members.OfType<FieldDeclarationSyntax>()
             .Where(field => IsAccessible(field.Modifiers))
             .Where(property => !IsIgnored(property.AttributeLists))
             .Select(ConvertField);
@@ -59,11 +61,14 @@ public class ModelCollector : CSharpSyntaxWalker
                             .Where(property => !IsIgnored(property.AttributeLists))
                             .Select(ConvertProperty);
 
+        var members = fields.Concat(properties).ToList();
+
         return new Model()
         {
             ModelName = $"{node.Identifier}{node.TypeParameterList?.ToString()}",
-            Members = members.Concat(properties),
+            Members = members,
             BaseClasses = node.BaseList?.Types.Select(s => s.ToString()),
+            ImportedTypeNames = TypeNamesRetriever.GetImportedTypeNames(members),
         };
     }
 

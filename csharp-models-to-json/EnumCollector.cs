@@ -6,7 +6,7 @@ namespace CSharpModelsToJson;
 
 class EnumCollector : CSharpSyntaxWalker
 {
-    public readonly List<EnumConversionModel> Enums = new List<EnumConversionModel>();
+    public readonly List<EnumModel> Enums = [];
 
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
@@ -17,7 +17,7 @@ class EnumCollector : CSharpSyntaxWalker
             values[member.Identifier.ToString()] = member.EqualsValue?.Value.ToString() ?? member.Identifier.ToString();
         }
 
-        Enums.Add(new EnumConversionModel()
+        Enums.Add(new EnumModel()
         {
             Identifier = node.Identifier.ToString(),
             Values = values
