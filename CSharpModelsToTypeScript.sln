@@ -5,6 +5,11 @@ VisualStudioVersion = 17.10.34707.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpModelsToTypeScript", "CSharpModelsToTypeScript\CSharpModelsToTypeScript.csproj", "{82F17F65-CDB3-4B30-9A37-3F235AE98444}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2EBA5C4C-9F44-40BE-A17A-948A66E79208}"
+	ProjectSection(SolutionItems) = preProject
+		VERSION = VERSION
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
