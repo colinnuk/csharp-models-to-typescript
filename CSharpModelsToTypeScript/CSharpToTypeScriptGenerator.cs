@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -31,6 +32,7 @@ public class CSharpToTypeScriptGenerator(Options options)
         sb.WriteLine("}");
 
         var filePath = Path.Combine(Options.OutputFolder, $"{model.ModelName}.ts");
+        Console.WriteLine($"CSharpModelsToTypeScript: Writing to {filePath}");
         var text = sb.ToString();
         File.WriteAllText(filePath, text);
     }
@@ -49,6 +51,7 @@ public class CSharpToTypeScriptGenerator(Options options)
         sb.WriteLine("}");
 
         var filePath = Path.Combine(Options.OutputFolder, $"{enumModel.Identifier}.ts");
+        Console.WriteLine($"CSharpModelsToTypeScript: Writing to {filePath}");
         var text = sb.ToString();
         File.WriteAllText(filePath, text);
     }

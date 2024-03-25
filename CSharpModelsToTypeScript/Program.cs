@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,6 +47,7 @@ public class Program
 
     private static FileToConvert ParseFile(string path)
     {
+        Console.WriteLine($"CSharpModelsToTypeScript: Reading from {path}");
         string source = File.ReadAllText(path);
         SyntaxTree tree = CSharpSyntaxTree.ParseText(source);
         var root = (CompilationUnitSyntax)tree.GetRoot();
