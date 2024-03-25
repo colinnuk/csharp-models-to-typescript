@@ -6,7 +6,7 @@ NOte: Currently I havent pushed this to nuget, so you will have to fork the repo
 
 ## Install
 
-``dotnet tool install -g csharp-models-to-typescript``
+``dotnet tool install -g csharpmodelstotypescript``
 
 (Or install it locally if you prefer)
 
@@ -28,7 +28,17 @@ Only InputFolder & OutputFolder are required, the others are optional. Default v
 
 Then run the tool with the below command
 
-``csharpmodelstotypescript options.json``
+``csharpmodelstotypescript csharptotypescript.json``
+
+This tool is easy to use and can be integrated into your build pipeline by adding the below XML to your .csproj file.
+
+```
+  <Target Name="csharptotypescript" AfterTargets="AfterBuild">
+    <Exec Command="dotnet tool restore" />
+    <Exec Command="dotnet csharptotypescript $(ProjectDir)csharptotypescript.json" />
+  </Target>
+
+```
 
 ## License
 Adapted from the below github profile
