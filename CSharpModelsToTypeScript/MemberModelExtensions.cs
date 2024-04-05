@@ -13,7 +13,7 @@ public static class MemberModelExtensions
 
         var typeScriptNullableType = GenerateTypeScriptNullableTypeString(typeScriptType, isBaseTypeNullable, isArray);
         var isWholeTypeNullable = IsNullable(typeMemberModel.Type);
-        return GenerateTypeScriptNullableTypeString(typeScriptNullableType, isWholeTypeNullable, false);
+        return GenerateTypeScriptNullableTypeString(typeScriptNullableType, isWholeTypeNullable && isArray, false);
     }
 
     private static bool IsNullable(string type) => type.EndsWith('?');
