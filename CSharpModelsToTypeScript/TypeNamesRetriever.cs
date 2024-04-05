@@ -26,7 +26,7 @@ public static class TypeNamesRetriever
         "DateTime" => false,
         "DateTimeOffset" => false,
         "Guid" => false,
-        "boolean" => false,
+        "bool" => false,
         _ => true
     };
 }
