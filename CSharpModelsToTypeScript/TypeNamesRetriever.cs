@@ -19,6 +19,7 @@ public static class TypeNamesRetriever
     {
         "string" => false,
         "int" => false,
+        "long" => false,
         "decimal" => false,
         "double" => false,
         "single" => false,

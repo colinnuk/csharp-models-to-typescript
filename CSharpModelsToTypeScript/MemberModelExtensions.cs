@@ -30,6 +30,7 @@ public static class MemberModelExtensions
     {
         "string" => "string",
         "int" => "number",
+        "long" => "number",
         "decimal" => "number",
         "double" => "number",
         "single" => "number",
