@@ -26,6 +26,8 @@ public static class TypeNamesRetriever
         "float" => false,
         "DateTime" => false,
         "DateTimeOffset" => false,
+        "DateOnly" => false,
+        "TimeOnly" => false,
         "Guid" => false,
         "bool" => false,
         _ => true

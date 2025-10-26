@@ -37,6 +37,8 @@ public static class MemberModelExtensions
         "float" => "number",
         "DateTime" => "string",
         "DateTimeOffset" => "string",
+        "DateOnly" => "string",
+        "TimeOnly" => "string",
         "Guid" => "string",
         "bool" => "boolean",
         _ => type
